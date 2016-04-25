@@ -80,7 +80,21 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
+    }
+
+    var checkCollisions = function() {
+        allEnemies.forEach(function(enemy) {
+            // enemy and player at same row
+            // enemy and player distance detection
+            if (player.row == enemy.row &&
+                Math.abs(enemy.x - (player.col - 1) * 101) < 80) {
+                // player collision, reset position
+                player.col = 3;
+                player.row = 6;
+                // count score here
+            }
+        });
     }
 
     /* This is called by the update function and loops through all of the
